@@ -1,0 +1,26 @@
+#inherit_from: .rubocop_todo.yml
+AllCops:
+  TargetRubyVersion: 2.5.0
+  Exclude:
+    - db/schema.rb
+    - db/migrate/**.rb
+    - tmp/**.rb
+    - bin/*
+    - config/initializers/*
+Metrics/LineLength:
+  Max: 120
+  IgnoredPatterns: ['(\A|\s)#']
+Metrics/ClassLength:
+  Max: 114
+Documentation:
+  Enabled: false
+Security/YAMLLoad:
+  Enabled: true
+# Offense count: 1
+Security/Eval:
+  Exclude:
+    - spec/**/*.rb
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - config/routes.rb
