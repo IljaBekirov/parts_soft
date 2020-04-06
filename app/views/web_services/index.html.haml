@@ -1,0 +1,27 @@
+%header.clearfix
+  .col-xs-5.col-sm-3.col-md-3
+    = t('web_services')
+  .col-xs-7.col-sm-9.col-md-9
+.content-inner
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= t('id')
+        %th= t('name')
+        %th= t('host')
+        %th= t('api_key')
+        %th= t('coefficient')
+        %th
+          %a.btn.btn-primary{ href: new_web_service_path }= t('new')
+    %tbody
+      %tr
+      - @resources.each do |web_service|
+        %tr
+          %td= web_service[:id]
+          %td= web_service[:name]
+          %td= web_service[:host]
+          %td= web_service[:api_key]
+          %td= web_service[:coef]
+          %td
+            = link_to fa_icon('pencil'), edit_web_service_path(web_service[:id]), class: "btn btn-xs btn-warning"
+            = link_to fa_icon('trash'), web_service_path(web_service[:id]), method: :delete, data: { confirm: t('confirm_message')}, class: "btn btn-xs btn-danger"

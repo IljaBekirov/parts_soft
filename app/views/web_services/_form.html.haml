@@ -1,0 +1,8 @@
+.content-inner
+  = simple_form_for(:web_service, url: url, method: method, html: { class: 'edit-form' }, defaults: { input_html: { class: 'form-control' } }) do |form|
+    = form.input :id, as: :hidden, input_html: { value: @resource[:id] }, required: false
+    = form.input :name, as: :string, input_html: { value: @resource[:name] }, required: false
+    = form.input :host, as: :string, input_html: { value: @resource[:host] }, required: false
+    = form.input :api_key, as: :string, input_html: { value: @resource[:api_key] }, required: false
+    = form.input :coef, as: :float, input_html: { value: @resource[:coef] }, required: false
+    = form.button :submit, class: 'btn btn-primary edit-form__save-button'
