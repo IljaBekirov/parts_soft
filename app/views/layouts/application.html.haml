@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1"}
+    %title Parts-Soft
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+  %body
+    .container-fluid
+      .row.wrapper
+        / begin left side menu
+        .col-lg-2.col-md-2.col-sm-3.hidden-xs.valign-top#side-menu
+          = render 'layouts/left_side_panel'
+        / end left side menu
+        / main content area
+        .col-lg-10.col-md-10.col-sm-9.col-xs-12.valign-top
+          .row
+            = render 'layouts/header'
+          .row
+            = render 'layouts/flash_messages'
+          .content
+            = yield

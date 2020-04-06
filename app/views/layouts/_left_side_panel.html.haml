@@ -1,0 +1,7 @@
+#logo.hidden-sm.hidden-xs.clearfix
+  %a{ href: root_path }= t('main_menu')
+%ul.list-unstyled.components
+  %li{ :class => "menu-link" }
+    %a{ href: root_path }
+      %span= fa_icon('arrow-left')
+      %span= t('Поиск')
