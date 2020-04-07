@@ -1,18 +1,22 @@
 # frozen_string_literal: true
 
 class AbstractProvider
+  SEARCH_V1 = '/backend/price_items/api/v1/search'
+
   def get_brands_by_oem(web_service:, name:)
-    request = BuildRequest::GetBrandsByOem.new(web_service, name).build
-    response = requester(web_service.host).get(request, '/backend/price_items/api/v1/search/get_brands_by_oem')
-    ParseResponse::GetBrandsByOem.new(response).parse
+    BuildRequest::GetBrandsByOem
+      .new(web_service.api_key, name)
+      .build
+      .then { |params| requester(web_service.host).get(params, SEARCH_V1 + '/get_brands_by_oem') }
+      .then { |response| ParseResponse::GetBrandsByOem.new(response).parse }
   end
 
   def get_offers_by_oem_and_make_name(web_service:, make_name:, number:)
-    # binding.pry
-    request = BuildRequest::GetOffersByOemAndMakeName.new(web_service, make_name, number).build
-    response = requester(web_service.host)
-               .get(request, '/backend/price_items/api/v1/search/get_offers_by_oem_and_make_name')
-    ParseResponse::GetOffersByOemAndMakeName.new(response).parse(web_service.coef)
+    BuildRequest::GetOffersByOemAndMakeName
+      .new(web_service.api_key, make_name, number)
+      .build
+      .then { |params| requester(web_service.host).get(params, SEARCH_V1 + '/get_offers_by_oem_and_make_name') }
+      .then { |response| ParseResponse::GetOffersByOemAndMakeName.new(response).parse(web_service.coef) }
   end
 
   private

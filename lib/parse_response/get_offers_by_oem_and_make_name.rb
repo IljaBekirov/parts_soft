@@ -8,10 +8,10 @@ module ParseResponse
       @response = response
     end
 
-    def parse(coef)
+    def parse(coefficient)
       result = response.deep_symbolize_keys[:data]
       Array.wrap(result).map do |item|
-        item[:price_with_coef] = item[:cost] * coef
+        item[:price_with_coef] = item[:cost].to_f * coefficient
         item
       end
     end

@@ -2,16 +2,16 @@
 
 module BuildRequest
   class GetBrandsByOem
-    attr_reader :web_service, :name
+    attr_reader :api_key, :name
 
-    def initialize(web_service, name)
-      @web_service = web_service
+    def initialize(api_key, name)
+      @api_key = api_key
       @name = name
     end
 
     def build
       params = {}
-      params[:api_key] = web_service.api_key
+      params[:api_key] = api_key
       params[:oem] = name
       params
     end
