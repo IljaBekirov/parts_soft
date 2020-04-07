@@ -1,0 +1,21 @@
+%header.clearfix
+  .col-xs-5.col-sm-3.col-md-3
+    = t('search')
+  .col-xs-7.col-sm-9.col-md-9
+.content-inner
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= 'Number'
+        %th= 'Brand'
+        %th= 'Des text'
+        %th
+    %tbody
+      %tr
+      - @resources.each do |item|
+        %tr
+          %td= item[:number]
+          %td= item[:brand]
+          %td= item[:des_text]
+          %td
+            = link_to fa_icon('pencil') + ' Price', check_price_index_path(item: item, web_service_id: params[:search][:web_service]), class: "btn btn-xs btn-warning"
